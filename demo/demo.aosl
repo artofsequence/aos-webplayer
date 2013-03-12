@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<sequence xmlns="artofsequence.org/aosl/1.0"
+					name="Red - Demo AOS Web Player 0.1"
+					id="aoswebplayer-demo-0-1"
+>
+
+	<library>
+
+		<resource id="begin_title"		type="image" >resources/title_begin.png</resource>
+		<resource id="end_title"		type="image" >resources/title_end.png</resource>
+		
+		<resource id="bg_forest_entrance"		type="image" >resources/bg_forest_entrance.png</resource>
+		<resource id="mask_forest_entrance"		type="image" >resources/mask_forest_entrance.png</resource>
+		<resource id="bg_path_fork"				type="image" >resources/bg_path_fork.png</resource>
+		<resource id="mask_path_fork"			type="image" >resources/mask_path_fork.png</resource>
+		<resource id="bg_forest_loop_path"		type="image" >resources/bg_forest_loop_path.png</resource>
+		<resource id="mask_forest_loop_path"	type="image" >resources/mask_forest_loop_path.png</resource>
+		<resource id="bg_forest_depths"			type="image" >resources/bg_forest_depths.png</resource>
+		<resource id="mask_forest_depths"		type="image" >resources/mask_forest_depths.png</resource>
+
+		<resource id="face_loop_path"			type="image" >resources/face_loop_path.png</resource>
+		<resource id="face_loop_path_flipped"	type="image" >resources/face_loop_path_flipped.png</resource>
+		<resource id="face_path_fork"			type="image" >resources/face_path_fork.png</resource>
+		<resource id="red_forest_entrance"		type="image" >resources/red_forest_entrance.png</resource>
+		<resource id="red_forest_depths"		type="image" >resources/red_forest_depths.png</resource>
+		<resource id="red_path_fork"			type="image" >resources/red_path_fork.png</resource>
+		<resource id="red_small_back"			type="image" >resources/red_small_back.png</resource>
+		<resource id="red_small_front"			type="image" >resources/red_small_front.png</resource>
+
+		<resource id="wolf_forest_entrance"		type="image" >resources/wolf_forest_entrance.png</resource>
+		<resource id="wolf_path_fork"			type="image" >resources/wolf_path_fork.png</resource>
+
+		<resource id="choice_path_left"			type="image" >resources/choice_path_left.png</resource>
+		<resource id="choice_path_right"			type="image" >resources/choice_path_right.png</resource>
+
+	</library>
+
+	<canvas color="black">
+		<area x="800" y="600" />
+
+		<objects>
+
+			<sprite id="begin_screen" resource="begin_title" active="true" />
+			<sprite id="end_screen" resource="end_title" active="false" />
+			
+			<sprite id="bg_1" resource="bg_forest_entrance"			/>
+			<sprite id="red_1" resource="red_forest_entrance"		>
+				<graphic>
+					<output>
+						<transformation>
+							<translation x="60" y="362" />
+							<scale x="0.1" y="0.1" />
+						</transformation>
+					</output>
+				</graphic>
+			</sprite>
+			<sprite id="wolf_1" resource="wolf_forest_entrance"	>
+				<graphic>
+					<output>
+						<transformation>
+							<translation x="270" y="250" />
+							<scale x="0.4" y="0.4" />
+						</transformation>
+					</output>
+				</graphic>
+			</sprite>
+
+			<sprite id="mask_1" resource="mask_forest_entrance"	/>
+
+			<sprite id="bg_2" resource="bg_path_fork"							/>
+			<sprite id="red_2" resource="red_path_fork"							/>
+			<sprite id="wolf_2" resource="wolf_path_fork"						/>
+			<sprite id="mask_2" resource="mask_path_fork"						/>
+
+			<sprite id="face_2" resource="face_path_fork"							>
+				<graphic>
+					<output>
+						<transformation>
+							<translation x="320" y="350" />
+						</transformation>
+					</output>
+				</graphic>
+			</sprite>
+			<sprite id="left_path" resource="choice_path_left"						>
+				<graphic>
+					<output>
+						<transformation>
+							<translation x="93" y="251" />
+						</transformation>
+					</output>
+				</graphic>
+			</sprite>
+			<sprite id="right_path" resource="choice_path_right"					>
+				<graphic>
+					<output>
+						<transformation>
+							<translation x="538" y="251" />
+						</transformation>
+					</output>
+				</graphic>
+			</sprite>
+
+			<sprite id="bg_3" resource="bg_forest_loop_path"						/>
+			<sprite id="red_3_back" resource="red_small_back"						>
+				<graphic>
+					<output>
+						<transformation>
+							<translation x="769" y="206" />
+						</transformation>
+					</output>
+				</graphic>
+			</sprite>
+			<sprite id="red_3_front" resource="red_small_front"						>
+				<graphic>
+					<output>
+						<transformation>
+							<translation x="117" y="426" />
+						</transformation>
+					</output>
+				</graphic>
+			</sprite>
+			<sprite id="mask_3" resource="mask_forest_loop_path"					/>
+
+			<sprite id="face_3" resource="face_loop_path"							>
+				<graphic>
+					<output>
+						<transformation>
+							<translation x="320" y="150" />
+						</transformation>
+					</output>
+				</graphic>
+			</sprite>
+			<sprite id="face_3_flipped" resource="face_loop_path_flipped"			>
+				<graphic>
+					<output>
+						<transformation>
+							<translation x="320" y="150" />
+						</transformation>
+					</output>
+				</graphic>
+			</sprite>
+
+			<sprite id="bg_4" resource="bg_forest_depths"							/>
+			<sprite id="red_4" resource="red_forest_depths"							>
+				<graphic>
+					<output>
+						<transformation>
+							<translation x="95" y="245" />
+						</transformation>
+					</output>
+				</graphic>
+			</sprite>
+			<sprite id="mask_4" resource="mask_forest_depths"						/>
+
+		</objects>
+	</canvas>
+
+	<story begin="begin" >
+
+		<navigation>
+			<selection object="#all" move="#next" />
+		</navigation>
+
+		<moves>
+
+			<move id="move_0" from="begin" to="forest_entrance_0">
+				<deactivate object="begin_screen" />
+				<activate object="bg_1 mask_1" />
+			</move>
+
+			<move id="move_1" from="forest_entrance_0" to="forest_entrance_1">
+				<activate object="wolf_1" />
+			</move>
+
+			<move id="move_2" from="forest_entrance_1" to="forest_entrance_2">
+				<activate object="red_1" />
+				<transform object="wolf_1">
+					<absolute>
+						<translation x="670" y="30" />
+					</absolute>
+				</transform>
+				
+			</move>
+
+			<move id="move_3" from="forest_entrance_2" to="forest_entrance_2a">
+				<deactivate object="wolf_1" />
+				<transform object="red_1" >
+					<absolute>
+						<translation x="160" y="350" />
+						<scale x="0.15" y="0.15" />
+					</absolute>
+				</transform>
+
+			</move>
+			
+			<move id="move_3a" from="forest_entrance_2a" to="forest_entrance_3">
+				<transform object="red_1" >
+					<absolute>
+						<translation x="150" y="250" />
+						<scale x="0.4" y="0.4" />
+					</absolute>
+				</transform>
+
+			</move>
+			
+			<move id="move_4" from="forest_entrance_3" to="forest_entrance_4">
+				<transform object="red_1" >
+					<absolute>
+						<translation x="360" y="220" />
+						<scale x="0.6" y="0.6" />
+					</absolute>
+				</transform>
+
+			</move>
+			
+			<move id="move_5" from="forest_entrance_4" to="forest_entrance_5">
+				<transform object="red_1" >
+					<absolute>
+						<translation x="440" y="10" />
+						<scale x="1" y="1" />
+					</absolute>
+				</transform>
+
+			</move>
+
+			<move id="move_fork_0" from="forest_entrance_5" to="path_fork_0">
+				<deactivate object="#all" />
+				<activate object="bg_2 mask_2 " />
+			</move>
+
+			<move id="move_fork_1" from="path_fork_0" to="path_fork_1">
+				<transform object="wolf_2">
+					<absolute>
+						<translation x="-80" y="340" />
+					</absolute>
+				</transform>
+				<activate object="wolf_2" />
+			</move>
+
+			<move id="move_fork_1a" from="path_fork_1" to="path_fork_1a">
+				<transform object="wolf_2">
+					<absolute>
+						<translation x="180" y="340" />
+					</absolute>
+				</transform>
+			</move>
+			
+			<move id="move_fork_1b" from="path_fork_1a" to="path_fork_1b">
+				<deactivate object="wolf_2" />
+			</move>
+
+			<move id="move_fork_2" from="lost_path_6 path_fork_1b" to="path_fork_2">
+				<deactivate object="#all" />
+				<activate object="bg_2 mask_2" />
+				
+				<transform object="red_2">
+					<absolute>
+						<translation x="200" y="-430" />
+						<scale x="2" y="2" />
+					</absolute>
+				</transform>
+				<activate object="red_2" />
+			</move>
+
+			<move id="move_fork_3" from="path_fork_2" to="path_fork_3">
+				<deactivate object="wolf_2" />
+				<transform object="red_2">
+					<absolute>
+						<translation x="300" y="20" />
+						<scale x="1" y="1" />
+					</absolute>
+				</transform>
+			</move>
+
+			<move id="move_fork_choice" from="path_fork_3" to="path_fork_choice">
+				<activate object="face_2 left_path right_path" />
+			</move>
+			
+			<move id="move_left" from="path_fork_choice" to="lost_path_1">
+				<deactivate object="#all" />
+				<activate object="bg_3 red_3_back mask_3" />
+				<transform object="red_3_back" >
+					<absolute>
+						<translation x="740" y="260" />
+					</absolute>
+				</transform>
+			</move>
+			
+			<move id="move_lost_1" from="lost_path_1" to="lost_path_2">
+				<transform object="red_3_back" >
+					<absolute>
+						<translation x="535" y="410" />
+					</absolute>
+				</transform>
+				<activate object="face_3" />
+			</move>
+			
+			<move id="move_lost_2" from="lost_path_2" to="lost_path_3">
+				<transform object="red_3_back" >
+					<absolute>
+						<translation x="344" y="462" />
+					</absolute>
+				</transform>
+				<deactivate object="face_3" />
+				<activate object="face_3_flipped" />
+			</move>
+				
+			<move id="move_lost_3" from="lost_path_3" to="lost_path_4">
+				<deactivate object="red_3_back"/>
+				<activate object="red_3_front"/>
+				<transform object="red_3_front" >
+					<absolute>
+						<translation x="127" y="426" />
+					</absolute>
+				</transform>
+
+				<deactivate object="face_3_flipped" />
+				<activate object="face_3" />
+				
+			</move>
+				
+			<move id="move_lost_4" from="lost_path_4" to="lost_path_5">
+				<transform object="red_3_front" >
+					<absolute>
+						<translation x="130" y="140" />
+					</absolute>
+				</transform>
+				<activate object="face_3_flipped" />
+				<deactivate object="face_3" />
+			</move>
+			
+			<move id="move_lost_5" from="lost_path_5" to="lost_path_6">
+				<transform object="red_3_front" >
+					<absolute>
+						<translation x="340" y="40" />
+					</absolute>
+				</transform>
+				<deactivate object="face_3_flipped"/>
+			</move>
+
+			<move id="move_right" from="path_fork_choice" to="path_fork_right_1">
+				<deactivate object="face_2 left_path right_path" />
+				<transform object="red_2">
+					<absolute>
+						<translation x="600" y="300" />
+						<scale x="0.6" y="0.6" />
+					</absolute>
+				</transform>
+			</move>
+
+			<move id="move_right_1" from="path_fork_right_1" to="path_fork_right_2">
+				<deactivate object="red_2" />
+			</move>
+
+			<move id="move_right_2" from="path_fork_right_2" to="path_fork_right_3">
+				<transform object="wolf_2">
+					<absolute>
+						<translation x="290" y="340" />
+					</absolute>
+				</transform>
+				<activate object="wolf_2" />
+			</move>
+
+			<move id="move_right_3" from="path_fork_right_3" to="path_fork_right_4">
+				<transform object="wolf_2">
+					<absolute>
+						<translation x="400" y="340" />
+					</absolute>
+				</transform>
+			</move>
+
+			<move id="move_right_4" from="path_fork_right_4" to="path_fork_right_5">
+				<transform object="wolf_2">
+					<absolute>
+						<translation x="550" y="340" />
+					</absolute>
+				</transform>
+			</move>
+
+			<move id="move_right_5" from="path_fork_right_5" to="path_fork_right_6">
+				<deactivate object="wolf_2" />
+			</move>
+
+			<move id="move_right_6" from="path_fork_right_6" to="forest_depths_0">
+				<deactivate object="#all" />
+				<activate object="bg_4 mask_4" />
+			</move>
+			
+			<move id="move_in_depths_0" from="forest_depths_0" to="forest_depths_1">
+				<activate object="red_4" />
+			</move>
+			
+			<move id="move_in_depths_1" from="forest_depths_1" to="forest_depths_2">
+				<transform object="red_4" >
+					<absolute>
+						<translation x="470" y="250" />
+						<scale x="0.8" y="0.8"/>
+					</absolute>
+				</transform>
+			</move>
+
+			<move id="move_in_depths_2" from="forest_depths_2" to="forest_depths_3">
+				<transform object="red_4" >
+					<absolute>
+						<translation x="720" y="180" />
+						<scale x="0.6" y="0.6"/>
+					</absolute>
+				</transform>
+			</move>
+			
+			<move id="move_end" from="forest_depths_3" to="end">
+				<deactivate object="#all" />
+				<activate object="end_screen" />
+			</move>
+		</moves>
+
+		<stages>
+			<stage id="begin" />
+			<stage id="forest_entrance_0" />
+			<stage id="forest_entrance_1" />
+			<stage id="forest_entrance_2" />
+			<stage id="forest_entrance_2a" />
+			<stage id="forest_entrance_3" />
+			<stage id="forest_entrance_4" />
+			<stage id="forest_entrance_5" />
+			<stage id="path_fork_0" />
+			<stage id="path_fork_1" />
+			<stage id="path_fork_1a" />
+			<stage id="path_fork_1b" />
+			<stage id="path_fork_2" />
+			<stage id="path_fork_3" />
+			<stage id="path_fork_choice">
+				<navigation>
+					<selection object="left_path" move="move_left" ></selection>
+					<selection object="right_path" move="move_right" ></selection>
+				</navigation>
+			</stage>
+			<stage id="lost_path_1" />
+			<stage id="lost_path_2" />
+			<stage id="lost_path_3" />
+			<stage id="lost_path_4" />
+			<stage id="lost_path_5" />
+			<stage id="lost_path_6" />
+			<stage id="path_fork_right_1" />
+			<stage id="path_fork_right_2" />
+			<stage id="path_fork_right_3" />
+			<stage id="path_fork_right_4" />
+			<stage id="path_fork_right_5" />
+			<stage id="path_fork_right_6" />
+			<stage id="forest_depths_0" />
+			<stage id="forest_depths_1" />
+			<stage id="forest_depths_2" />
+			<stage id="forest_depths_3" />
+			<stage id="end" />
+		</stages>
+
+	</story>
+
+</sequence>

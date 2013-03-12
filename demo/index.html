@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>AOS Web Player - Demo</title>
+
+    <link rel="stylesheet" href="demo.css" />
+    <link rel="stylesheet" href="lib/codemirror.css" />
+
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jwerty.js"></script>
+    <script type="text/javascript">
+        if (typeof console == "undefined") {
+            window.console = {
+                log: function () { }
+            };
+        }
+    </script>
+    <script type="text/javascript" src="lib/AOSWP.js"></script>
+    <script type="text/javascript" src="lib/codemirror.js"></script>
+    <script type="text/javascript">
+
+        var web_player = null;
+        var code_editor = null;
+
+        var close_edit_button = function () {
+            var $edit_button = $("#edit_button");
+            $("#sequence_editor").hide();
+            $edit_button.text("Edit Sequence - AOSL Code");
+            $edit_button.click(open_edit_button);
+        }
+
+        var open_edit_button = function () {
+            var $edit_button = $("#edit_button");
+            $edit_button.text("Close Edition");
+            $("#sequence_editor").show();
+            $edit_button.click(close_edit_button);
+
+            if (code_editor) {
+                code_editor.refresh();
+                code_editor.focus();
+            }
+
+        }
+
+        var load_sequence = function (config) {
+            code_editor = null;
+            $("#aosl_editor").html("");
+
+            var $player_div = $("#player");
+            $player_div.html("");
+
+            web_player = AOSWebPlayer(config, $player_div.get(0));
+            web_player.ready(function (aosl_code) {
+                code_editor = CodeMirror($("#aosl_editor").get(0), {
+                    value: aosl_code,
+                    mode: "xml"
+                });
+            });
+        }
+
+        $(document).ready(function () {
+
+            $("#sequence_editor").hide();
+            close_edit_button();
+
+            load_sequence({ uri: "demo.aosl" });
+
+            $("#button_play_edited").click(function () {
+                if (code_editor) {
+                    load_sequence({ aosl: code_editor.getValue() });
+                }
+            });
+
+            var $header = $("#header");
+            $header.html($header.html().replace(/%version%/g, web_player.version()));
+
+            //var $about_box_aoswp = $("#about_box_aoswp");
+            //var $about_box_aosl = $("#about_box_aosl");
+
+            //var show_aoswp_box = function () { $about_box_aoswp.css("visibility", "visible"); }
+            //var hide_aoswp_box = function () { $about_box_aoswp.css("visibility", "hidden"); }
+            //var show_aosl_box = function () { $about_box_aosl.css("visibility", "visible"); }
+            //var hide_aosl_box = function () { $about_box_aosl.css("visibility", "hidden"); }
+
+            //$about_box_aoswp.mouseenter(show_aoswp_box);
+            //$about_box_aoswp.mouseleave(hide_aoswp_box);
+            //$about_box_aosl.mouseenter(show_aosl_box);
+            //$about_box_aosl.mouseleave(hide_aosl_box);
+
+            //var $about_aoswp = $("#about_aoswp");
+            //$about_aoswp.mouseenter(show_aoswp_box);
+            ////$about_aoswp.mouseleave(hide_aoswp_box);
+
+            //var $about_aosl = $("#about_aosl");
+            //$about_aosl.mouseenter(show_aosl_box);
+            ////$about_aosl.mouseleave(hide_aosl_box);
+
+            //$about_box_aoswp.offset({
+            //    top: $about_aoswp.offset().top + $about_aoswp.height()
+            //, left: $about_aoswp.offset().left
+            //});
+            //$about_box_aosl.offset({
+            //    top: $about_aosl.offset().top + $about_aosl.height()
+            //, left: $about_aosl.offset().left
+            //});
+
+        });
+
+
+        var download_aoswp = function () {
+
+        }
+
+    </script>
+
+</head>
+<body>
+    <div id="header">
+        <span id="demo_title">Demo: AOS Web Player (v%version%)</span>
+       <!-- <span id="about_aoswp" class="about">What is AOSWP?</span>
+        <span id="about_aosl" class="about">What is AOSL?</span>
+        <span id="download_aoswp" class="about">Download AOSWP.js v%version% (require <a href="http://jquery.com">JQuery</a>)</span>
+-->
+        <span id="wip">This is a <b>Work In Progress</b> - More information very soon. - See <a href="http://artofsequence.org">artofsequence.org</a></span>
+        <span> - <a href="http://artofsequence.org/?p=236">Blog article about this demo</a> </span>
+    </div>
+    <!--<div id="about_box_aoswp" class="about_box">
+        This is a box about AOSWP.<p />
+        This is another line.
+    </div>
+    <div id="about_box_aosl" class="about_box">
+        This is a box about AOSL.<p />
+        This is another line.
+    </div>-->
+    <div id="content">
+        <!--<div id="control_panel">
+            <select id="sequence_selection">
+                <option>Test A</option>
+                <option>Test B</option>
+            </select>
+        </div>-->
+
+        <div id="player"></div>
+
+        <div id="editor">
+            <button id="edit_button"></button>
+            <div id="sequence_editor">
+                <div id="aosl_editor"></div>
+                <div id="editor_action_panel">
+                    <button id="button_play_edited">Play Edited Sequence</button>
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

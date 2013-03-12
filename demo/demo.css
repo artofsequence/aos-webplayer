@@ -1,0 +1,119 @@
+﻿body
+{
+	background-color:#000000;
+	padding: 8px;
+	text-align:center;
+	width:1000px;
+	margin-right:auto;
+	margin-left:auto;
+}
+
+#header
+{
+	position:absolute;
+	
+	top:0px;
+	left:0px;
+	height: 20px;
+	
+	background-color:black;
+	padding: 4px;
+	color:white;
+}
+
+	#header span
+	{
+		position:relative;
+		padding:4px;
+	}
+
+#demo_title
+{
+	font-weight:bolder;
+}
+
+.about
+{
+	background-color:#808080;
+	color:white;
+	
+}
+
+	.about:hover
+	{
+		color:#ff6a00;
+		background-color:#f0f0f0;
+	}
+
+.about_box
+{
+	visibility:hidden;
+	background-color:#f0f0f0;
+	color:#ff6a00;
+	position:absolute;
+}
+
+#content
+{
+	position:absolute;
+	top:50px;
+	width:1000px;
+	margin-right:auto;
+	margin-left:auto;
+	
+}
+
+#player, #control_panel, #editor, #edit_button, #sequence_editor
+{
+	width:800px;
+	margin:auto;
+}
+
+#player
+{
+	padding:8px;
+}
+
+#control_panel
+{
+	
+}
+
+#sequence_selection
+{
+	
+}
+
+#editor
+{
+	padding:8px;
+	background-color:#ff6a00;
+}
+
+#edit_button
+{
+	color: white;
+	background-color:#b200ff;
+	width: 100%;
+	
+}
+
+#aosl_editor
+{
+	background-color:white;
+	border-width:thin;
+}
+
+#editor_action_panel
+{
+	position:relative;
+}
+
+#button_play_edited
+{
+	font-size:large;
+	width:200px;
+	height:40px;
+	float:right;
+	margin:4px;
+}
